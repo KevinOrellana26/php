@@ -90,5 +90,5 @@ resource "kubernetes_manifest" "php_ingress" {
 }
 
 output "ingress_host" {
-  value = kubernetes_manifest.php_ingress.metadata[0].annotations.host
+  value = kubernetes_manifest.php_ingress.metadata.annotations["nginx.ingress.kubernetes.io/rewrite-target"]
 }
