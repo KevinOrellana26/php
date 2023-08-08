@@ -6,6 +6,9 @@
     <title>Hello World</title>
 </head>
 <body>
-    <h1>Hello World from Syndeno!</h1>
+    <?php 
+    echo "<h1>Hello World from Syndeno!</h1>";
+    echo "<h3>Bienvenidos!</h3>";
+    ?>
 </body>
 </html>
