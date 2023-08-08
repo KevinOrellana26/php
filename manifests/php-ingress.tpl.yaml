@@ -10,7 +10,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
-  rule:
+  rules:
   - host: "php.plt.ko.syndeno.net"
     http:
       paths:
@@ -22,5 +22,5 @@ spec:
             port:
               number: 8081
   tls:
-    hosts: ["php.plt.ko.syndeno.net"]
-    secret_name: "php.plt.ko.syndeno.net"    
+  - hosts: ["php.plt.ko.syndeno.net"]
+    secretName: "php.plt.ko.syndeno.net"    
