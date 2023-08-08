@@ -1,5 +1,5 @@
 variable "namespace" {
-  default = "php"
+  default = "aplicaciones-comunes"
   type = string
 }
 
@@ -21,17 +21,17 @@ provider "aws" {
 }
 
 //////////////////// Namespace
-resource "kubernetes_namespace" "default" {
-  metadata {
-    name = var.namespace
-  }
-}
+# resource "kubernetes_namespace" "default" {
+#   metadata {
+#     name = var.namespace
+#   }
+# }
 
 //////////////////// Deployment
 resource "kubernetes_deployment" "php_deploy" {
-  depends_on = [
-    kubernetes_namespace.default
-  ]
+  # depends_on = [
+  #   kubernetes_namespace.default
+  # ]
   metadata {
     name      = "php"
     namespace = var.namespace
@@ -65,9 +65,9 @@ resource "kubernetes_deployment" "php_deploy" {
 
 //////////////////// Service
 resource "kubernetes_manifest" "php_service" {
-  depends_on = [
-    kubernetes_namespace.default,
-  ]
+  # depends_on = [
+  #   kubernetes_namespace.default,
+  # ]
   manifest = yamldecode(templatefile(
     "${path.module}/manifests/php-service.tpl.yaml",
     {
@@ -78,9 +78,9 @@ resource "kubernetes_manifest" "php_service" {
 
 //////////////////// Ingress
 resource "kubernetes_manifest" "php_ingress" {
-  depends_on = [
-    kubernetes_namespace.default,
-  ]
+  # depends_on = [
+  #   kubernetes_namespace.default,
+  # ]
   manifest = yamldecode(templatefile(
     "${path.module}/manifests/php-ingress.tpl.yaml",
     {
